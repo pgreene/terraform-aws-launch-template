@@ -9,7 +9,12 @@ variable "tags" {
 
 variable "device_name" {
   description = "The name of the device to mount"
-  default = "/dev/sda1"
+  default = null
+}
+
+variable "device_name_b" {
+  description = "The name of the device to mount"
+  default = null
 }
 
 variable "no_device" {
@@ -17,7 +22,17 @@ variable "no_device" {
   default = null
 }
 
+variable "no_device_b" {
+  description = "Suppresses the specified device included in the AMI's block device mapping."
+  default = null
+}
+
 variable "virtual_name" {
+  description = "The Instance Store Device Name - e.g. ephemeral0."
+  default = null
+}
+
+variable "virtual_name_b" {
   description = "The Instance Store Device Name - e.g. ephemeral0."
   default = null
 }
@@ -30,7 +45,15 @@ variable "ebs_delete_on_termination" {
   default = null
 }
 
+variable "ebs_delete_on_termination_b" {
+  default = null
+}
+
 variable "encrypted" {
+  default = null
+}
+
+variable "encrypted_b" {
   default = null
 }
 
@@ -38,7 +61,15 @@ variable "kms_key_id" {
   default = null
 }
 
+variable "kms_key_id_b" {
+  default = null
+}
+
 variable "snapshot_id" {
+  default = null
+}
+
+variable "snapshot_id_b" {
   default = null
 }
 
@@ -47,12 +78,27 @@ variable "volume_size" {
   default = 30
 }
 
+variable "volume_size_b" {
+  description = "The size of the volume in gigabytes"
+  default = null
+}
+
 variable "volume_type" {
   description = "The type of volume. Can be standard, gp2, or io1"
   default = "gp2"
 }
 
+variable "volume_type_b" {
+  description = "The type of volume. Can be standard, gp2, or io1"
+  default = null
+}
+
 variable "iops" {
+  description = "The amount of provisioned IOPS. This must be set with a volume_type of io1."
+  default = null
+}
+
+variable "iops_b" {
   description = "The amount of provisioned IOPS. This must be set with a volume_type of io1."
   default = null
 }

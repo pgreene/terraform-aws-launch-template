@@ -10,23 +10,53 @@ resource "aws_launch_template" "general" {
   vpc_security_group_ids = var.vpc_security_group_ids
   user_data = var.user_data
 
+  #block_device_mappings {
+  #  device_name = var.device_name
+  #  no_device = var.no_device
+  #  virtual_name = var.virtual_name
+  #  dynamic ebs {
+  #  for_each = var.ebs == null ? [] : tolist([var.ebs])
+  #    content {
+  #      delete_on_termination = var.ebs_delete_on_termination
+  #      encrypted = ebs.value.encrypted
+  #      kms_key_id = ebs.value.kms_key_id
+  #      snapshot_id = ebs.value.snapshot_id
+  #      volume_size = ebs.value.volume_size
+  #      volume_type = ebs.value.volume_type
+  #      iops = ebs.value.iops
+  #    } 
+  #  }
+  #}
+
   block_device_mappings {
-    device_name = var.device_name
-    no_device = var.no_device
-    virtual_name = var.virtual_name
-    dynamic ebs {
-    for_each = var.ebs == null ? [] : tolist([var.ebs])
-      content {
+      device_name = var.device_name
+      no_device = var.no_device
+      virtual_name = var.virtual_name
+      ebs {
         delete_on_termination = var.ebs_delete_on_termination
-        encrypted = ebs.value.encrypted
-        kms_key_id = ebs.value.kms_key_id
-        snapshot_id = ebs.value.snapshot_id
-        volume_size = ebs.value.volume_size
-        volume_type = ebs.value.volume_type
-        iops = ebs.value.iops
-      } 
+        encrypted = var.encrypted
+        kms_key_id = var.kms_key_id
+        snapshot_id = var.snapshot_id
+        volume_size = var.volume_size
+        volume_type = var.volume_type
+        iops = var.iops
+      }
     }
-  }
+
+  block_device_mappings {
+      device_name = var.device_name_b
+      no_device = var.no_device_b
+      virtual_name = var.virtual_name_b
+      ebs {
+        delete_on_termination = var.ebs_delete_on_termination_b
+        encrypted = var.encrypted_b
+        kms_key_id = var.kms_key_id_b
+        snapshot_id = var.snapshot_id_b
+        volume_size = var.volume_size_b
+        volume_type = var.volume_type_b
+        iops = var.iops_b
+      }
+    }
 
 /* 
 This block below needs work since there's an unusable nested block within it
